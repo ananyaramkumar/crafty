@@ -1,0 +1,14 @@
+{% extends 'auth/base.html' %}
+
+{% block title %}
+  <title>Login</title>
+{% endblock %}
+
+{% block formHeading %}
+  <h3>Login</h3>
+{% endblock %}
+
+{% block formFooter %}
+  <a href="{% url 'auth:register' %}">Not a user? Sign up!</a>
+  <a class="forgot" href="{% url 'auth:reset_password' %}">Forgot Password?</a>
+{% endblock %}

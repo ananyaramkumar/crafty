@@ -1,0 +1,16 @@
+{% extends 'crafty/base.html' %}
+
+{% block title %}
+  <title>{{ song }}</title>
+{% endblock %}
+
+{% block nav %}
+  {% include 'crafty/nav.html' %}
+{% endblock %}
+
+{% block body %}
+  {% if song %}
+    <a href="/crafty/{{ song.diy.id }}/">back</a>
+    <h1>{{ song }}</h1>
+  {% endif %} 
+{% endblock %}
