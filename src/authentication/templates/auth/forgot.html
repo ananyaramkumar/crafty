@@ -1,0 +1,13 @@
+{% extends 'auth/base.html' %}
+
+{% block title %}
+  <title>Recover</title>
+{% endblock %}
+
+{% block formHeading %}
+  <h3>Recover Account</h3>
+{% endblock %}
+
+{% block formFooter %}
+  <a href="{% url 'auth:login' %}">Back</a>
+{% endblock %}

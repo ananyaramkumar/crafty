@@ -1,0 +1,21 @@
+<div class="diy-list-item">
+  <a href="{% url 'crafty:detail' diy.id %}">
+    <div class="diy-panel panel panel-default">
+      <div class="panel-body">
+        <img src="{{ diy.logo.url }}" />
+        <h1>{{diy.title}}</h1>
+        <h2>{{diy.artist}}</h2>
+        <div class="align-flex">
+          <button type="submit" class="btn btn-favorite">Favorite</button>
+          <form action="{% url 'crafty:diy-delete' diy.id %}" class="inline-form">
+            {% csrf_token %}
+            <input type="hidden" name="diy_id" value="{{ diy.id }}">
+            <button type="submit" class="btn btn-trash">
+              <span class="glyphicon glyphicon-trash"></span>
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </a>
+</div>
