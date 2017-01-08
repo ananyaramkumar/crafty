@@ -1,0 +1,70 @@
+.login:after {
+  background: #F5F8FA url('images/background1.jpg') no-repeat center center fixed;
+} .register:after {
+  background: #F5F8FA url('images/background2.jpg') no-repeat center center fixed;
+} .forgot:after {
+  background: #F5F8FA url('images/background3.jpg') no-repeat center center fixed;
+} .container:after {
+  position: absolute;
+  background-size: cover;
+  width: 100%;
+  height: 100%;
+  opacity : 0.5;
+  z-index: -1;
+} .container {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+} .container>div {
+  align-self: center;
+  margin: 0 auto;
+  padding: 0;
+  min-width: 30%;
+} h3 {
+  color: #394B59;
+  margin: 0;
+  margin-bottom: 10px;
+  padding: 0;
+} .label-field {
+  display: flex;
+  margin: 20px 0;
+  width: 100%;
+  flex-direction: row;
+  flex-wrap: wrap;
+} .label-field label {
+  color: #5C7080;
+  margin: 0;
+  min-width: 25%;
+  margin-right: 10px;
+  align-self: center;
+} .label-field input {
+  flex: 2 0px;  
+} .panel-body {
+  padding: 30px 50px;
+} button {
+  background: #2B95D6; 
+  border: 0;
+  border-radius: 3px;
+  color: #F5F8FA;
+  padding: 5px 10px;
+  transition: background 0.3s ease;
+} button:hover {
+  background: #137CBD;
+} .block-container {
+  width: 100%;
+  display: flex;
+} a {
+  display: block;
+  color: #2B95D6;
+  transition: color 0.3s ease;
+  margin-top: 15px;
+} a:hover {
+  color: #137CBD;
+  text-decoration: none;
+} .forgot {
+  color: #8A9BA8;
+} .forgot:hover {
+  color: #5C7080;
+}
