@@ -1,38 +1,38 @@
 <div class="diy-list-item">
-  <a href="{% url 'crafty:detail' diy.id %}">
+  <a href="{% url 'crafty:detail' diy.diy.id %}">
     <div class="diy-panel panel panel-default">
       <div class="panel-body">
-        <img src="{{ diy.picture.url }}" />
-        <h1>{{diy.title}}</h1>
-        <h2>{{diy.creator.username}}</h2>
-        {% if diy.num_likes == 1 %}
-          <div>{{diy.num_likes}} like</div>
+        <img src="{{ diy.diy.picture.url }}" />
+        <h1>{{diy.diy.title}}</h1>
+        <h2>{{diy.diy.creator.username}}</h2>
+        {% if diy.diy.num_likes == 1 %}
+          <div>{{diy.diy.num_likes}} like</div>
         {% else %}
-          <div>{{diy.num_likes}} likes</div>
+          <div>{{diy.diy.num_likes}} likes</div>
         {% endif %}
         <div class="align-flex">
-          {% if diy.favorite %}
-            <form action="{% url 'crafty:favorite' diy.id %}" class="inline-form" method="post">
+          {% if diy.diy.favorite %}
+            <form action="{% url 'crafty:favorite' diy.diy.id %}" class="inline-form" method="post">
               {% csrf_token %}
-              <input type="hidden" name="diy_id" value="{{ diy.id }}">
+              <input type="hidden" name="diy_id" value="{{ diy.diy.id }}">
               <input type="hidden" name="url" value="{{ request.get_full_path }}">
               <button type="submit" class="btn btn-favorite">
                 <span class="glyphicon glyphicon glyphicon-star-empty"></span>
               </button>
             </form>
           {% else %}
-            <form action="{% url 'crafty:unfavorite' diy.id %}" class="inline-form" method="post">
+            <form action="{% url 'crafty:unfavorite' diy.diy.id %}" class="inline-form" method="post">
               {% csrf_token %}
-              <input type="hidden" name="diy_id" value="{{ diy.id }}">
+              <input type="hidden" name="diy_id" value="{{ diy.diy.id }}">
               <input type="hidden" name="url" value="{{ request.get_full_path }}">
               <button type="submit" class="btn btn-favorite">
                 <span class="glyphicon glyphicon glyphicon-star"></span>
               </button>
             </form>
           {% endif %}
-          <form action="{% url 'crafty:diy-delete' diy.id %}" class="inline-form">
+          <form action="{% url 'crafty:diy-delete' diy.diy.id %}" class="inline-form">
             {% csrf_token %}
-            <input type="hidden" name="diy_id" value="{{ diy.id }}">
+            <input type="hidden" name="diy_id" value="{{ diy.diy.id }}">
             <button type="submit" class="btn btn-trash">
               <span class="glyphicon glyphicon-trash"></span>
             </button>

@@ -1,0 +1,18 @@
+{% extends 'crafty/base.html' %}
+
+{% block body %}
+  <div class="flex-container container-fluid">
+    <div class="flex-row row">
+      <div class="panel panel-default center-panel">
+        <div class="panel-body">
+          <form action="" method="post">
+            {% csrf_token %}
+            <p>Are you sure you want to delete "{{ object }}"?</p>
+            <input type="submit" value="Confirm" />
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+

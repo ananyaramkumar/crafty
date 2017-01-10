@@ -9,14 +9,82 @@
 {% endblock %}
 
 {% block body %}
-  <img src="{{ diy.logo.url }}" />
-  <h1>{{diy.title}}</h1>
-  <h2>{{diy.artist}}</h2>
-  {% if diy.song_set.count > 0 %}
-    <ul>
-      {% for song in diy.song_set.all %}
-        <li><a href="{% url 'crafty:song' diy.id song.id %}">{{ song }}</a></li>
-      {% endfor %}
-    </ul>
-  {% endif %}
+  <div class="details-panel">
+    <h1>{{ diy.title }} <span class="diy-category">{{diy.category}}</span></h1>
+    <h2>{{ diy.creator.first_name }} {{ diy.creator.last_name }}</h2>
+    <div class="general-info">
+      <span class="diy-skill-level">{{diy.skill_level}}</span>
+      <span class="diy-duration">{{diy.duration}} {{diy.duration_units}}</span>
+      {% if diy.favorite_set.count == 1 %}
+        <span class="diy-like">{{diy.favorite_set.count}} like</span>
+      {% else %}
+        <span class="diy-like">{{diy.favorite_set.count}} likes</span>
+      {% endif %}
+    </div>
+    <div class="diy-image wedge">
+     <img src="{{diy.picture.url}}">
+    </div>
+    <h3>Description</h3>
+    <p>{{ diy.description }}</p>
+    <h3>Materials</h3>
+    {% if diy.material_set.count > 0 %}
+      <table class="material-list">
+        {% for material in diy.material_set.all %}
+          <tr class="material-item">
+            <td class="material-name">{{material.name}}</td>
+            <td class="material-amount">{{material.amount}} {{material.units}}</td>
+            <td>
+              <a class="material-update-delete" href="{% url 'crafty:material-update' material.id %}">
+                <button type="submit" class="btn material-update">
+                  <span class="glyphicon glyphicon-pencil"></span>
+                </button>
+              </a>
+            </td>
+            <td>
+              <form action="{% url 'crafty:material-delete' material.id %}" class="material-update-delete inline-form">
+                {% csrf_token %}
+                <input type="hidden" name="diy_id" value="{{ diy.id }}">
+                <button type="submit" class="btn btn-trash material-trash">
+                  <span class="glyphicon glyphicon-trash"></span>
+                </button>
+              </form>
+            </td>
+          </tr>
+        {% endfor %}
+      </table>
+    {% endif %}
+      <a class="add-container" href="{% url 'crafty:material-add' diy.id %}">
+        <button class="add-material-button">Add Material</button>
+      </a>
+    <h3>Instructions</h3>
+    {% if diy.instruction_set.count > 0 %}
+      <ol class="instruction-list">
+        {% for instruction in diy.instruction_set.all %}
+          <li>
+            <a href="{% url 'crafty:instruction-update' instruction.id %}">
+              <button type="submit" class="btn instruction-update">
+                <span class="glyphicon glyphicon-pencil"></span>
+              </button>
+            </a>
+            <form action="{% url 'crafty:instruction-delete' instruction.id %}" class="inline-form">
+              {% csrf_token %}
+              <input type="hidden" name="diy_id" value="{{ diy.id }}">
+              <button type="submit" class="btn btn-trash instruction-trash">
+                <span class="glyphicon glyphicon-trash"></span>
+              </button>
+            </form>
+            <div class="instruction-item">
+              {% if instruction.picture %}
+                <img src="{{instruction.picture.url}}">
+              {% endif %}
+              <div>{{instruction.instruction}}</div>
+            </div>
+          </li>
+        {% endfor %}
+      </ol>
+    {% endif %}
+      <a class="add-container" href="{% url 'crafty:instruction-add' diy.id %}">
+        <button class="add-instruction-button">Add Instruction</button>
+      </a>
+  </div>
 {% endblock %}

@@ -1,0 +1,20 @@
+{% extends 'crafty/base.html' %}
+
+{% block nav %}
+  {% include 'crafty/nav.html' %}
+{% endblock %}
+
+{% block body %}
+  <h1>My DIYs</h1>
+  {% if diys %}
+    <div>
+      <div id="diy-list">
+        {% for diy in diys %}
+          {% include 'crafty/diy-list-item.html' %}
+        {% endfor %}
+      </div>
+    <div>
+  {% else %}
+      <h3>No DIYs to show</h3>
+  {% endif %}
+{% endblock %}

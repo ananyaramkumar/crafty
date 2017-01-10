@@ -1,0 +1,33 @@
+{% extends 'crafty/base.html' %}
+
+{% block title %}
+{% endblock %}
+
+{% block nav %}
+  {% include 'crafty/nav.html' %}
+{% endblock %}
+
+{% block body %}
+  <div class="container-fluid">
+    <div class="row">
+      <div class="panel panel-default center-panel">
+        <div class="panel-body">
+          {% block panelTitle %}
+          {% endblock %}
+          {% if error_message %}
+            <p><strong>{{ error_message }}</strong></p>
+          {% endif %}
+          <form class="form-horizontal" action="" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {% include 'crafty/form_template.html' %}
+            <div class="form-group">
+              <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" class="btn btn-success">Submit</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

@@ -79,17 +79,166 @@ body {
   width: 50px;
   height: 50px;
   transition: background 0.3s ease;
+  color: #F5F8FA;
+} .add-instruction-button,
+  .add-material-button {
+  border: 0;
+  width: 100%;
+  height: 50px;
+  font-size: 20px;
+  transition: background 0.3s ease;
+  color: #F5F8FA;
+} .add-container {
+  display: block;
 } .add-button {
   background: #7762BC;
-  color: #F5F8FA;
 } .filter-button {
   background: #394B59;
-  color: #F5F8FA;
 }.add-button:hover {
   background: #5642A6;
 } .filter-button:hover {
   background: #293742;
+} .add-instruction-button {
+  background: #B85033;
+} .add-material-button {
+  background: #4B69B2;
+} .add-instruction-button:hover {
+  background: #9E2B0E;
+} .add-material-button:hover {
+  background: #1F4B99;
 } .center-panel {
   width: 70%;
   margin: 0 auto;
+} .details-panel {
+  width: 60%;
+  margin: 0 auto;
+  padding: 20px 60px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 3px 0px #BFCCD6;
+  background: #fff;
+  margin-bottom: 20px;
+} .details-panel h1 {
+  display: flex;
+  color: #394B59;
+} .details-panel h2 {
+  color: #5C7080;
+} .diy-category {
+  background: #7C487B;
+  color: #F5F8FA;
+  padding: 5px;
+  text-transform: uppercase;
+  border-radius: 5px;
+  font-size: 16px;
+  align-self: center;
+  margin-left: 10px;
+} .general-info {
+  font-size: 20px;
+  display: flex;
+  margin-bottom: 20px;
+} .diy-skill-level {
+  background: #BF4C72;
+  color: #F5F8FA;
+  padding: 5px;
+  text-transform: uppercase;
+  border-radius: 5px;
+  font-size: 16px;
+  align-self: center;
+} .diy-duration {
+  background: #369C91;
+  color: #F5F8FA;
+  padding: 5px;
+  text-transform: uppercase;
+  border-radius: 5px;
+  font-size: 16px;
+  align-self: center;
+  margin-left: 20px;
+} .diy-like {
+  background: #4B69B2;
+  color: #F5F8FA;
+  padding: 5px;
+  text-transform: uppercase;
+  border-radius: 5px;
+  font-size: 16px;
+  align-self: center;
+  margin-left: 20px;
+} .diy-image {
+  display: flex;
+} .diy-image img {
+  width: 60%;
+  margin: 20px auto;
+  align-self: center;
+} .wedge {
+  border-top: 1px solid #CED9E0;
+} .flex-container {
+  display: flex;
+  height: 100vh;
+} .flex-row {
+  margin: 0 auto;
+  align-self: center;
+} .flex-row input {
+  border: 0;
+  width: 100%;
+  height: 50px;
+  font-size: 20px;
+  transition: background 0.3s ease;
+  color: #F5F8FA;
+  background: #3DCC91;
+} .flex-row input:hover {
+  background: #0F9960;
+} .flex-row p {
+  font-size: 28px;
+} .material-list {
+  display: flex;
+  flex-direction: row;
+  padding: 5px;
+  font-size: 20px;
+  margin: 0;
+  width: 100%;
+  background: #BFCCD6;
+  color: #394B59;
+} .material-list tbody {
+  width: 100%;
+} .material-trash,
+  .material-update,
+  .instruction-update,
+  .instruction-trash {
+  border-radius: 0;
+  background: inherit;
+  color: #394B59;
+  transition: background 0.3s ease, color 0.3s ease;
+} .material-trash:hover,
+  .material-update:hover,
+  .instruction-update:hover,
+  .instruction-trash:hover {
+  background: #394B59;
+  color: #F5F8FA;
+} .material-item {
+  display: flex;
+  flex-direction: row;
+} .material-amount {
+  font-weight: 200;
+  width: 70%;
+} .material-update-delete {
+  width: 10%
+} .material-name {
+  width: 20%;
+} .instruction-list {
+  padding: 0;
+} img {
+  max-width: 100%;
+} .instruction-item {
+  margin-bottom: 20px;
+} .instruction-item img {
+  width: 50%;
+  float: right;
+  margin: 0;
+  padding: 0;
+} .instruction-item div {
+  width: calc(50% - 20px);
+  float: left;
+  margin: 0;
+  margin-right: 20px;
+  padding: 0;
+  text-align: justify;
+  text-justify: inter-word;
 }
