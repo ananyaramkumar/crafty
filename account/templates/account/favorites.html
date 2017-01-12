@@ -5,7 +5,31 @@
 {% endblock %}
 
 {% block body %}
-  <h1>My Favorite DIYs</h1>
+  <div class="userHeading">
+    <h1>{{user.first_name}} {{user.last_name}}</h1>
+    {% if user.username != request.user.username %}
+      {% if follow %}
+        <form action="{% url 'account:follow' user.id %}" class="inline-form marginForm" method="post">
+          {% csrf_token %}
+          <input type="hidden" name="diy_id" value="{{ diy.id }}">
+          <input type="hidden" name="url" value="{{ request.get_full_path }}">
+          <button type="submit" class="btn btn-favorite follow">
+            Follow
+          </button>
+        </form>
+      {% else %}
+        <form action="{% url 'account:unfollow' user.id %}" class="inline-form marginForm" method="post">
+          {% csrf_token %}
+          <input type="hidden" name="diy_id" value="{{ diy.id }}">
+          <input type="hidden" name="url" value="{{ request.get_full_path }}">
+          <button type="submit" class="btn btn-favorite unfollow">
+            Unfollow
+          </button>
+        </form>
+      {% endif %}
+    {% endif %}
+  </div>
+  <h2>My Favorite DIYs</h2>
   {% if diys %}
     <div>
       <div id="diy-list">
@@ -17,4 +41,14 @@
   {% else %}
       <h3>No DIYs to show</h3>
   {% endif %}
+{% endblock %}
+
+{% block extras %}
+  <div class="fixedPositioningButtons">
+    <a href="{% url 'crafty:diy-add' %}">
+      <button class="add-button">
+        <span class="glyphicon glyphicon-plus"></span>
+      </button>
+    </a>
+  </div>
 {% endblock %}

@@ -1,0 +1,29 @@
+{% extends 'crafty/base.html' %}
+
+{% block nav %}
+  {% include 'crafty/nav.html' %}
+{% endblock %}
+
+{% block body %}
+  <div class="container-fluid">
+    <div class="row">
+      <div class="panel panel-default center-panel">
+        <div class="panel-body">
+          <h1>Copyright Business Professionals of America</h1>
+          <h2>Area 1 Region 3</h2>
+          {% load staticfiles %}
+          <img src="{%  static 'crafty/logo.png' %}">
+          <h3>Participants</h3>
+          <p>Ananya Ramkumar</p>
+          <p>An Nguyen</p>
+          <p>Britney Lam</p>
+          <p>Ethan Beauregard</p>
+          <h3>DIY Website</h3>
+          <p>Plano West Senior High School</p>
+          <p>Plano, TX</p>
+          <p>2016-2017</p>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

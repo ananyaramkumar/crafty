@@ -6,5 +6,5 @@ class CraftyUser(models.Model):
   picture = models.ImageField(null=True)
 
 class Follow(models.Model):
-   follower = models.ForeignKey(CraftyUser, related_name='follower', on_delete=models.CASCADE)
-   followee = models.ForeignKey(CraftyUser, related_name='followee', on_delete=models.CASCADE)
+   follower = models.ForeignKey(User, related_name='follower', on_delete=models.CASCADE)
+   followee = models.ForeignKey(User, related_name='followee', on_delete=models.CASCADE)

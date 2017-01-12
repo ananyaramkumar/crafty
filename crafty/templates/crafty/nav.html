@@ -29,14 +29,19 @@
       </form> -->
 
       <ul class="nav navbar-nav navbar-right">
-        <li {% if 'favorites' in request.path %}class="active"{% endif %}>
-          <a href="{% url 'profile:favorites' request.user.pk %}">
+        <li {% if 'favorites/' in request.path and request.user.username in request.path %}class="active"{% endif %}>
+          <a href="{% url 'profile:favorites' request.user.username %}">
              <span class="glyphicon glyphicon-star" aria-hidden="true"></span>&nbsp; My Favorites
           </a>
         </li>
-        <li {% if 'personal' in request.path %}class="active"{% endif %}>
-          <a href="{% url 'profile:index' request.user.pk %}">
+        <li {% if 'personal/' in request.path and request.user.username in request.path %}class="active"{% endif %}>
+          <a href="{% url 'profile:index' request.user.username %}">
              <span class="glyphicon glyphicon-user" aria-hidden="true"></span>&nbsp; {{ request.user.first_name }}
+          </a>
+        </li>
+        <li {% if 'copyright' in request.path %}class="active"{% endif %}>
+          <a href="{% url 'crafty:copyright' %}">
+             <span class="glyphicon glyphicon-copyright-mark" aria-hidden="true"></span>&nbsp; Copyright
           </a>
         </li>
         <li class="">

@@ -12,7 +12,7 @@ urlpatterns = [
     # crafty home page, "go to views"
     url(r'^newsfeed/$', login_required(views.NewsfeedView.as_view()), name='newsfeed'),
 
-    # diy details page, "diy, display songs & everything"
+    # diy details page
     # crafty/2/
     url(r'^(?P<pk>[0-9]+)/$',
         login_required(views.DetailView.as_view()), name='detail'),
@@ -60,5 +60,9 @@ urlpatterns = [
     # crafty/unfavorite/2/
     url(r'^unfavorite/(?P<diy_id>[0-9]+)/$',
       login_required(views.unfavorite), name='unfavorite'),
+
+    # crafty/copywrite
+    url(r'^copyright/$',
+      login_required(views.CopyrightView.as_view()), name='copyright'),
 
 ]

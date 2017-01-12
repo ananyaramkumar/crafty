@@ -42,6 +42,9 @@ class Material(models.Model):
   units = models.CharField(max_length=20, null=True)
   diy = models.ForeignKey(Diy, on_delete=models.CASCADE)
 
+  def get_absolute_url(self):
+    return self.diy.get_absolute_url()
+
   def __str__(self):
     return str(self.amount) + " " + self.units + " of " + self.name
 
@@ -49,6 +52,9 @@ class Instruction(models.Model):
   instruction = models.CharField(max_length=1000)
   picture = models.ImageField(null=True)
   diy = models.ForeignKey(Diy, on_delete=models.CASCADE)
+
+  def get_absolute_url(self):
+    return self.diy.get_absolute_url()
 
   def __str__(self):
     return self.instruction

@@ -4,7 +4,7 @@
       <div class="panel-body">
         <img src="{{ diy.picture.url }}" />
         <h1>{{diy.title}}</h1>
-        <h2>{{diy.creator.username}}</h2>
+        <h2><a href="{% url 'profile:index' diy.creator.username %}">{{diy.creator.username}}</a></h2>
         {% if diy.num_likes == 1 %}
           <div>{{diy.num_likes}} like</div>
         {% else %}
@@ -30,13 +30,15 @@
               </button>
             </form>
           {% endif %}
-          <form action="{% url 'crafty:diy-delete' diy.id %}" class="inline-form">
-            {% csrf_token %}
-            <input type="hidden" name="diy_id" value="{{ diy.id }}">
-            <button type="submit" class="btn btn-trash">
-              <span class="glyphicon glyphicon-trash"></span>
-            </button>
-          </form>
+          {% if diy.creator.username == request.user.username %}
+            <form action="{% url 'crafty:diy-delete' diy.id %}" class="inline-form">
+              {% csrf_token %}
+              <input type="hidden" name="diy_id" value="{{ diy.id }}">
+              <button type="submit" class="btn btn-trash">
+                <span class="glyphicon glyphicon-trash"></span>
+              </button>
+            </form>
+          {% endif %}
         </div>
       </div>
     </div>

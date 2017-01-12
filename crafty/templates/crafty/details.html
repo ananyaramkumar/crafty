@@ -11,7 +11,9 @@
 {% block body %}
   <div class="details-panel">
     <h1>{{ diy.title }} <span class="diy-category">{{diy.category}}</span></h1>
-    <h2>{{ diy.creator.first_name }} {{ diy.creator.last_name }}</h2>
+    <a href="{% url 'profile:index' diy.creator.username %}">
+      <h2>{{ diy.creator.first_name }} {{ diy.creator.last_name }}</h2>
+    </a>
     <div class="general-info">
       <span class="diy-skill-level">{{diy.skill_level}}</span>
       <span class="diy-duration">{{diy.duration}} {{diy.duration_units}}</span>
@@ -27,52 +29,58 @@
     <h3>Description</h3>
     <p>{{ diy.description }}</p>
     <h3>Materials</h3>
-    {% if diy.material_set.count > 0 %}
+    {% if diy.hasMaterials %}
       <table class="material-list">
-        {% for material in diy.material_set.all %}
+        {% for material in diy.materials %}
           <tr class="material-item">
             <td class="material-name">{{material.name}}</td>
             <td class="material-amount">{{material.amount}} {{material.units}}</td>
-            <td>
-              <a class="material-update-delete" href="{% url 'crafty:material-update' material.id %}">
-                <button type="submit" class="btn material-update">
-                  <span class="glyphicon glyphicon-pencil"></span>
-                </button>
-              </a>
-            </td>
-            <td>
-              <form action="{% url 'crafty:material-delete' material.id %}" class="material-update-delete inline-form">
-                {% csrf_token %}
-                <input type="hidden" name="diy_id" value="{{ diy.id }}">
-                <button type="submit" class="btn btn-trash material-trash">
-                  <span class="glyphicon glyphicon-trash"></span>
-                </button>
-              </form>
-            </td>
+            {% if diy.creator.username == request.user.username %}
+              <td>
+                <a class="material-update-delete" href="{% url 'crafty:material-update' material.id %}">
+                  <button type="submit" class="btn material-update">
+                    <span class="glyphicon glyphicon-pencil"></span>
+                  </button>
+                </a>
+              </td>
+              <td>
+                <form action="{% url 'crafty:material-delete' material.id %}" class="material-update-delete inline-form">
+                  {% csrf_token %}
+                  <input type="hidden" name="diy_id" value="{{ diy.id }}">
+                  <button type="submit" class="btn btn-trash material-trash">
+                    <span class="glyphicon glyphicon-trash"></span>
+                  </button>
+                </form>
+              </td>
+            {% endif %}
           </tr>
         {% endfor %}
       </table>
     {% endif %}
+    {% if diy.creator.username == request.user.username %}
       <a class="add-container" href="{% url 'crafty:material-add' diy.id %}">
         <button class="add-material-button">Add Material</button>
       </a>
+    {% endif %}
     <h3>Instructions</h3>
-    {% if diy.instruction_set.count > 0 %}
+    {% if diy.hasInstructions %}
       <ol class="instruction-list">
-        {% for instruction in diy.instruction_set.all %}
+        {% for instruction in diy.instructions %}
           <li>
-            <a href="{% url 'crafty:instruction-update' instruction.id %}">
-              <button type="submit" class="btn instruction-update">
-                <span class="glyphicon glyphicon-pencil"></span>
-              </button>
-            </a>
-            <form action="{% url 'crafty:instruction-delete' instruction.id %}" class="inline-form">
-              {% csrf_token %}
-              <input type="hidden" name="diy_id" value="{{ diy.id }}">
-              <button type="submit" class="btn btn-trash instruction-trash">
-                <span class="glyphicon glyphicon-trash"></span>
-              </button>
-            </form>
+            {% if diy.creator.username == request.user.username %}
+              <a href="{% url 'crafty:instruction-update' instruction.id %}">
+                <button type="submit" class="btn instruction-update">
+                  <span class="glyphicon glyphicon-pencil"></span>
+                </button>
+              </a>
+              <form action="{% url 'crafty:instruction-delete' instruction.id %}" class="inline-form">
+                {% csrf_token %}
+                <input type="hidden" name="diy_id" value="{{ diy.id }}">
+                <button type="submit" class="btn btn-trash instruction-trash">
+                  <span class="glyphicon glyphicon-trash"></span>
+                </button>
+              </form>
+            {% endif %}
             <div class="instruction-item">
               {% if instruction.picture %}
                 <img src="{{instruction.picture.url}}">
@@ -83,8 +91,10 @@
         {% endfor %}
       </ol>
     {% endif %}
+    {% if diy.creator.username == request.user.username %}
       <a class="add-container" href="{% url 'crafty:instruction-add' diy.id %}">
         <button class="add-instruction-button">Add Instruction</button>
       </a>
+    {% endif %}
   </div>
 {% endblock %}

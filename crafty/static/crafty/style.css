@@ -223,6 +223,8 @@ body {
 } .material-name {
   width: 20%;
 } .instruction-list {
+  display: flex;
+  flex-direction: column;
   padding: 0;
 } img {
   max-width: 100%;
@@ -241,4 +243,25 @@ body {
   padding: 0;
   text-align: justify;
   text-justify: inter-word;
+} .userHeading {
+  display: flex;
+  align-items: center;
+} .marginForm {
+  margin-left: 20px;
+} .unfollow {
+  background: #DB3737;
+  color: #F5F8FA;
+  transition: background 0.3s ease;
+} .unfollow:hover {
+  background: #A82A2A;
+} .follow {
+  background: #137CBD;
+  color: #F5F8FA;
+  transition: background 0.3s ease;
+} .follow:hover {
+  background: #0E5A8A;
+} a h2 {
+  transition: color 0.3s ease;
+} a h2:hover {
+  color: #394B59;
 }
